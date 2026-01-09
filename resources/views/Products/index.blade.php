@@ -37,12 +37,7 @@
                     <td>
                         @if($product->getImageUrl())
                             <img src="{{ $product->getImageUrl() }}" alt="{{ $product->name }}" 
-                                 class="rounded" style="width: 50px; height: 50px; object-fit: cover;"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="bg-secondary text-white rounded d-flex align-items-center justify-content-center" 
-                                 style="width: 50px; height: 50px; display: none;">
-                                <i class="fas fa-image"></i>
-                            </div>
+                                 class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
                         @else
                             <div class="bg-secondary text-white rounded d-flex align-items-center justify-content-center" 
                                  style="width: 50px; height: 50px;">
@@ -51,7 +46,11 @@
                         @endif
                     </td>
                     <td><strong>{{ $product->name }}</strong></td>
-                    <td><span class="badge bg-secondary">{{ $product->category->name }}</span></td>
+                    <td>
+                        <span class="badge bg-secondary">
+                            {{ $product->category?->name ?? 'Tanpa Kategori' }}
+                        </span>
+                    </td>
                     <td>Rp {{ number_format($product->price, 0, ',', '.') }}</td>
                     <td>
                         @if($product->stock <= 10)

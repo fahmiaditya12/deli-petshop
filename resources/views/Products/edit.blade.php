@@ -71,11 +71,7 @@
                     @if($product->getImageUrl())
                         <div class="mb-2">
                             <img src="{{ $product->getImageUrl() }}" alt="{{ $product->name }}" 
-                                 class="img-thumbnail" style="max-height: 150px;"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                            <div class="alert alert-warning small" style="display: none;">
-                                <i class="fas fa-exclamation-triangle me-1"></i> Gambar tidak dapat dimuat
-                            </div>
+                                 class="img-thumbnail" style="max-height: 150px;">
                             <p class="text-muted small mt-1">Gambar saat ini</p>
                         </div>
                     @endif

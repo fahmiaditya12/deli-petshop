@@ -76,7 +76,13 @@
         <main class="main-content">
             <!-- Navbar -->
             <nav class="navbar">
-                <div>
+                <div class="d-flex align-items-center">
+                    <button type="button"
+                            class="btn btn-outline-primary d-md-none me-3"
+                            id="sidebarToggle"
+                            aria-label="Toggle sidebar">
+                        <i class="fas fa-bars"></i>
+                    </button>
                     <h5 class="mb-0">@yield('page-title', 'Dashboard')</h5>
                 </div>
                 <div class="d-flex align-items-center">
@@ -132,13 +138,22 @@
     <!-- jQuery (Optional) -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     
-    <!-- Initialize Bootstrap Tooltips -->
+    <!-- Initialize Bootstrap Tooltips & Mobile Sidebar -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Tooltips
             var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            tooltipTriggerList.map(function (tooltipTriggerEl) {
                 return new bootstrap.Tooltip(tooltipTriggerEl);
             });
+
+            // Mobile sidebar toggle
+            var sidebarToggle = document.getElementById('sidebarToggle');
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', function () {
+                    document.body.classList.toggle('sidebar-open');
+                });
+            }
         });
     </script>
     

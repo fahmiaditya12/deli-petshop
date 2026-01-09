@@ -30,15 +30,7 @@
             <h5 class="mb-3">Gambar Produk</h5>
             @if($product->getImageUrl())
                 <img src="{{ $product->getImageUrl() }}" alt="{{ $product->name }}" 
-                     class="img-fluid rounded mb-3" style="max-height: 400px; width: 100%; object-fit: cover;"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="bg-secondary text-white rounded d-flex align-items-center justify-content-center mb-3" 
-                     style="height: 300px; display: none;">
-                    <div class="text-center">
-                        <i class="fas fa-image fa-4x mb-3 d-block"></i>
-                        <p class="mb-0">Gambar tidak dapat dimuat</p>
-                    </div>
-                </div>
+                     class="img-fluid rounded mb-3" style="max-height: 400px; width: 100%; object-fit: cover;">
             @else
                 <div class="bg-secondary text-white rounded d-flex align-items-center justify-content-center mb-3" 
                      style="height: 300px;">

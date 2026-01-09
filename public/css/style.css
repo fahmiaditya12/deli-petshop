@@ -366,18 +366,47 @@ body {
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
-    .sidebar {
-        margin-left: -260px;
+    .wrapper {
+        min-height: 100vh;
     }
-    
+
+    .sidebar {
+        transform: translateX(-260px);
+        transition: transform 0.3s ease;
+    }
+
+    body.sidebar-open .sidebar {
+        transform: translateX(0);
+    }
+
     .main-content {
         margin-left: 0;
     }
-    
+
+    body.sidebar-open .main-content {
+        margin-left: 260px;
+    }
+
+    .navbar {
+        padding: 10px 15px;
+    }
+
+    .content-wrapper {
+        padding: 15px;
+    }
+
+    .table-card {
+        padding: 15px;
+    }
+
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+
     .login-card {
         flex-direction: column;
     }
-    
+
     .login-left {
         padding: 40px 30px;
     }
