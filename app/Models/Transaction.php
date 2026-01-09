@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Transaction extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'customer_id',
+        'user_id',
+        'invoice_number',
+        'transaction_date',
+        'subtotal',
+        'discount',
+        'tax',
+        'total',
+        'payment_method',
+    ];
+
+    protected $casts = [
+        'transaction_date' => 'date',
+        'subtotal' => 'decimal:2',
+        'discount' => 'decimal:2',
+        'tax' => 'decimal:2',
+        'total' => 'decimal:2',
+    ];
+
+    // Relationships
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function transactionDetails()
+    {
+        return $this->hasMany(TransactionDetail::class);
+    }
+
+    // Helper method
+    public static function generateInvoiceNumber()
+    {
+        $prefix = 'INV';
+        $date = date('Ymd');
+        $lastInvoice = self::whereDate('created_at', today())
+            ->orderBy('id', 'desc')
+            ->first();
+        
+        $number = $lastInvoice ? (int)substr($lastInvoice->invoice_number, -4) + 1 : 1;
+        
+        return $prefix . $date . str_pad($number, 4, '0', STR_PAD_LEFT);
+    }
+}
